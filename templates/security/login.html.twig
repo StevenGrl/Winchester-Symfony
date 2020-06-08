@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Winchester - Login{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="card w-50 mx-auto mt-5 text-center bg-light shadow-lg">
+            <div class="card-header">
+                <h2 class="card-title">Connexion</h2>
+            </div>
+            <div class="card-body">
+                <form action="{{ path('app_login_check') }}" method="post">
+                    <div class="form-group">
+                        <label for="username">Nom d'utilisateur</label>
+                        <input type="text" class="form-control w-50 mx-auto" id="username"
+                               name="_username" value="{{ lastUsername }}"
+                               placeholder="Nom d'utilisateur.."/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" class="form-control w-50 mx-auto" id="password"
+                               aria-describedby="passwordHelpBlock" name="_password"
+                               placeholder="Mot de passe.."/>
+                    </div>
+
+                    <input type="hidden" name="_target_path" value="{{ targetPath }}">
+
+                    <button type="submit" class="btn btn-primary">
+                        Connexion <i class="fas fa-sign-in-alt"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
