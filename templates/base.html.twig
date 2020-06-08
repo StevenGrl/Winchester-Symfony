@@ -3,14 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
-        {# import js #}
-        <script src="{{ asset('build/app.js') }}"></script>
-        {# import js #}
+        <script src="{{ asset('build/js/app.js') }}"></script>
     </body>
 </html>
