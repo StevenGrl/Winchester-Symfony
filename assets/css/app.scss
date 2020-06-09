@@ -1,3 +1,5 @@
+$primary: #3498DB;
+
 @import "~bootstrap/scss/bootstrap";
 
 body {
@@ -14,7 +16,7 @@ a.Artistique {
 }
 
 a.Journalisme {
-  background-color: #5DADE2;
+  background-color: $primary;
 }
 
 a.Administratif {
