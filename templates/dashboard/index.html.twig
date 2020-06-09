@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Dashboard{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mt-3">Dashboard</h1>
+    <div class="col-12 mx-auto text-center">
+        {% for theme, content in themes %}
+            <a class="card d-inline-block m-3 col-3 {{ theme }}" href="{{ path(content[2]) }}">
+                <div class="card-header">
+                    <i class="fas fa-{{ content[0] }} fa-7x mt-2"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Pôle {{ theme }}</h5>
+                    <p class="card-text">{{ content[1] }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
