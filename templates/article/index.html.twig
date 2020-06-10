@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+    <h1 class="text-primary text-center">Liste Des Articles</h1>
+
+    {% for article in articles %}
+    <div class="jumbotron mb-3 bg-white border p-0">
+        <div class="row p-3">
+            <div class="col-3 my-auto">
+                <img src="https://tmssl.akamaized.net/images/foto/normal/kevin-prince-boateng-besiktas-1587123285-36609.jpg"
+                     class="img-fluid rounded" alt="image en chargement ou corompue">
+            </div>
+            <div class="col-9 text-center">
+                <h2>
+                    <a href="{{ path('article_show', { 'id': article.id }) }}"
+                       class="text-decoration-none text-primary font-weight-normal font-italic">
+                        {{ article.articleTitle|capitalize }}
+                    </a>
+                </h2>
+                <div>
+                    <span class="ml-2">
+                        {{ article.articleNbViews }} <i class="far fa-eye fa-sm"></i>
+                    </span>
+                </div>
+                <span class="text-muted">{{ article.articleContent }}</span>
+                <br/>
+                <a class="text-decoration-none move-arrow" href="{{ path('article_show', {'id': article.id }) }}" role="button"><i class="fas fa-arrow-right fa-sm"></i>
+                Lire La suite
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <a href="{{ path('article_new') }}">Ajouter un nouvel article</a>
+{% endblock %}
