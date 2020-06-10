@@ -6,7 +6,7 @@
     <h1 class="text-center mt-3">Dashboard</h1>
     <div class="col-12 mx-auto text-center">
         {% for theme, content in themes %}
-            <a class="card d-inline-block m-3 col-3 {{ theme }}" href="{{ path(content[2]) }}">
+            <a class="card d-inline-block m-3 col-3 px-0 {{ theme }}" href="{{ path(content[2]) }}">
                 <div class="card-header">
                     <i class="fas fa-{{ content[0] }} fa-7x mt-2"></i>
                 </div>
