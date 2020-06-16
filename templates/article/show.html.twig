@@ -3,44 +3,34 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-    <h1>Article</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
-                <th>ArticleSubject</th>
-                <td>{{ article.articleSubject }}</td>
-            </tr>
-            <tr>
-                <th>ArticleTitle</th>
-                <td>{{ article.articleTitle }}</td>
-            </tr>
-            <tr>
-                <th>ArticleContent</th>
-                <td>{{ article.articleContent }}</td>
-            </tr>
-            <tr>
-                <th>ArticleState</th>
-                <td>{{ article.articleState ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>ArticleNbViews</th>
-                <td>{{ article.articleNbViews }}</td>
-            </tr>
-            <tr>
-                <th>ArticleImage</th>
-                <td>{{ article.articleImage }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('article_index') }}">back to list</a>
-
-    <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Titre de l'article -->
+            <h1 class="mt-4">{{ article.articleTitle }}</h1>
+            <!-- Auteur à voir avec steven  -->
+            <p class="lead">
+                Catégorie :
+                <a href="#">{{ article.articleSubject }}</a>
+            </p>
+            <hr>
+            <!-- Date/Heure -->
+            <!-- à gérer une fois qu'on a modifié la base de données -->
+            <p>Publié le : !!!</p>
+            <hr>
+            <!-- Image de l'article -->
+            <!-- à gérer -->
+            <img class="img-fluid rounded" src="https://tmssl.akamaized.net/images/foto/normal/kevin-prince-boateng-besiktas-1587123285-36609.jpg" alt="en cours de chargement ou corompue">
+            <hr>
+            <p>{{ article.ArticleContent }}</p>
+            <hr>
+        </div>
+    </div>
+</div>
+    <a href="{{ path('article_index') }}">Retour à la liste des articles</a>
+    <hr>
+    <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
 
     {{ include('article/_delete_form.html.twig') }}
 {% endblock %}

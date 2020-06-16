@@ -47,6 +47,11 @@ class Article
      */
     private $image;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Theme::class, inversedBy="nom")
+     */
+    private $noms;
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -123,4 +128,17 @@ class Article
 
         return $this;
     }
+
+    public function getNoms(): ?Theme
+    {
+        return $this->noms;
+    }
+
+    public function setNoms(?Theme $noms): self
+    {
+        $this->noms = $noms;
+
+        return $this;
+    }
+
 }
