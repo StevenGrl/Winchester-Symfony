@@ -20,106 +20,106 @@ class Article
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $articleSubject;
+    private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $articleTitle;
+    private $subject;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $articleContent;
+    private $content;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $articleState;
+    private $state;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $articleNbViews;
+    private $nbViews;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
-    private $articleImage;
+    private $image;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getArticleSubject(): ?string
+    public function getTitle(): ?string
     {
-        return $this->articleSubject;
+        return $this->title;
     }
 
-    public function setArticleSubject(string $articleSubject): self
+    public function setTitle(string $title): self
     {
-        $this->articleSubject = $articleSubject;
+        $this->title = $title;
 
         return $this;
     }
 
-    public function getArticleTitle(): ?string
+    public function getSubject(): ?string
     {
-        return $this->articleTitle;
+        return $this->subject;
     }
 
-    public function setArticleTitle(string $articleTitle): self
+    public function setSubject(string $subject): self
     {
-        $this->articleTitle = $articleTitle;
+        $this->subject = $subject;
 
         return $this;
     }
 
-    public function getArticleContent(): ?string
+    public function getContent(): ?string
     {
-        return $this->articleContent;
+        return $this->content;
     }
 
-    public function setArticleContent(string $articleContent): self
+    public function setContent(string $content): self
     {
-        $this->articleContent = $articleContent;
+        $this->content = $content;
 
         return $this;
     }
 
-    public function getArticleState(): ?bool
+    public function getState(): ?bool
     {
-        return $this->articleState;
+        return $this->state;
     }
 
-    public function setArticleState(bool $articleState): self
+    public function setState(bool $state): self
     {
-        $this->articleState = $articleState;
+        $this->state = $state;
 
         return $this;
     }
 
-    public function getArticleNbViews(): ?int
+    public function getNbViews(): ?int
     {
-        return $this->articleNbViews;
+        return $this->nbViews;
     }
 
-    public function setArticleNbViews(int $articleNbViews): self
+    public function setNbViews(int $nbViews): self
     {
-        $this->articleNbViews = $articleNbViews;
+        $this->nbViews = $nbViews;
 
         return $this;
     }
 
-    public function getArticleImage(): ?string
+    public function getImage(): ?string
     {
-        return $this->articleImage;
+        return $this->image;
     }
 
-    public function setArticleImage(?string $articleImage): self
+    public function setImage(string $image): self
     {
-        $this->articleImage = $articleImage;
+        $this->image = $image;
 
         return $this;
     }

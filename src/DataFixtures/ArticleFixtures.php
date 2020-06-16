@@ -15,11 +15,12 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
         $faker = Factory::create('fr_FR');
         foreach (range(1,10) as $i) {
             $article = new Article();
-            $article->setArticleSubject($faker->words(3, true));
-            $article->setArticleTitle($faker->words(4, true));
-            $article->setArticleNbViews(0);
-            $article->setArticleContent($faker->paragraphs(3, true));
-            $article->setArticleState(true);
+            $article->setSubject($faker->words(3, true));
+            $article->setTitle($faker->words(4, true));
+            $article->setNbViews(0);
+            $article->setContent($faker->paragraphs(3, true));
+            $article->setState(true);
+            $article->setImage('https://tmssl.akamaized.net/images/foto/normal/kevin-prince-boateng-besiktas-1587123285-36609.jpg');
             $this->addReference('article' . $i, $article);
 
             $manager->persist($article);

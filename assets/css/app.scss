@@ -30,3 +30,13 @@ a.E-Sport {
 a.Evenementiel {
   background-color: #F5B041;
 }
+
+.move-arrow:hover .fa-arrow-right {
+  transition: margin-left .3s;
+  margin-left: 15px;
+}
+
+.move-arrow .fa-arrow-right {
+  transition: margin-left .3s;
+  margin-left: 0;
+}
