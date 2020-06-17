@@ -3,34 +3,109 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8">
-            <!-- Titre de l'article -->
-            <h1 class="mt-4">{{ article.articleTitle }}</h1>
-            <!-- Auteur à voir avec steven  -->
-            <p class="lead">
-                Catégorie :
-                <a href="#">{{ article.articleSubject }}</a>
-            </p>
-            <hr>
-            <!-- Date/Heure -->
-            <!-- à gérer une fois qu'on a modifié la base de données -->
-            <p>Publié le : !!!</p>
-            <hr>
-            <!-- Image de l'article -->
-            <!-- à gérer -->
-            <img class="img-fluid rounded" src="https://tmssl.akamaized.net/images/foto/normal/kevin-prince-boateng-besiktas-1587123285-36609.jpg" alt="en cours de chargement ou corompue">
-            <hr>
-            <p>{{ article.ArticleContent }}</p>
-            <hr>
+    <div class="jumbotron mb-3 bg-light p-0 pb-4 my-4" id="view_jumbotron">
+        <div class="row mb-3">
+            <div class="col-12">
+                <img src="{{ asset(article.image) }}" class="img-fluid rounded-top img-cover" alt="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-10 mx-auto">
+                <div class="row">
+                    <h2 class="d-inline-block col-10 pl-0">{{ article.title|capitalize }} - Auteur ?{# {{ article.author }} #}</h2>
+                    {% if is_granted('edit', article) %}
+                        <div class="d-inline-block my-auto ml-3">
+                            <a href="{{ path('article_edit', {'id': article.id}) }}" class="btn btn-primary">
+                                <i class="far fa-edit"></i>
+                            </a>
+                            <button type="button" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </div>
+                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+                             aria-labelledby="deleteModal" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered  " role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">
+                                            {{ 'blog.view.delete.title'|trans }}
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{ 'blog.view.delete.message'|trans }}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            {{ 'blog.view.delete.close'|trans }}
+                                        </button>
+                                        <a href="{{ path('article_delete', {'id': article.id}) }}"
+                                           class="btn btn-danger">
+                                            {{ 'blog.view.delete.submit'|trans }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="row">
+                    <p class="col-12 pl-0 mb-0">
+                        <small class="font-italic text-muted">
+                            Date de création : 17/06/2020 {# {{ article.createdAt|date('d:m:Y h:m:s') }} #}
+                            {#{% if article.createdAt|date('d:m:Y h:m') != article.updatedAt|date('d:m:Y h:m') %}#}
+                                {#| {{ 'blog.updated_at'|trans }} : {{ article.updatedAt|date('d:m:Y h:m:s') }}#}
+                            {#{% endif %}#}
+                            |
+                        </small>
+                        {#{% for category in article.categories %}#}
+                            {#<a class="badge badge-info" href="{{ path('category_article_index', {'id': category.id}) }}">#}
+                                {#{{ category.name }}#}
+                            {#</a>#}
+                        {#{% endfor %}#}
+                        <span>
+                            {{ article.nbViews }} <i class="far fa-eye fa-sm"></i> |
+                            {#{{ article.comments|length }} <i class="far fa-comments"></i>#}
+                            {#{% if is_granted('like', article) %}#}
+                                {#{% if article in app.user.favouriteArticles %}#}
+                                    {#<i class="fas fa-heart fa-lg"></i>#}
+                                {#{% else %}#}
+                                    {#<i class="far fa-heart fa-sm"></i>#}
+                                {#{% endif %}#}
+                            {#{% endif %}#}
+                        </span>
+                    </p>
+                    <div class="col-12 pl-0">
+                        <div class="dropdown-divider border border-secondary col-3"></div>
+                    </div>
+                    <p class="mb-0">{{ article.content }}</p>
+                    {#{% if article.comments|length > 0 %}#}
+                        {#<div class="dropdown-divider mx-auto border border-secondary col-2 mt-3"></div>#}
+                        {#<h2 class="mt-0 col-12 pl-0 text-center">~ {{ 'blog.view.comments.title'|trans }}  ~</h2>#}
+                        {#{% for comment in article.comments %}#}
+                            {#<div class="col-12">#}
+                                {#<div class="border-left border-secondary mb-3">#}
+                                    {#<blockquote class="blockquote ml-4">#}
+                                        {#<div class="font-weight-bold">#}
+                                            {#{{ comment.title }} |#}
+                                            {#<span class="font-italic font-weight-normal">{{ comment.author }} :</span>#}
+                                            {#<small>{{ comment.createdAt|date("d/m/Y h:m:s") }}</small>#}
+                                        {#</div>#}
+                                        {#<footer class="blockquote-footer">#}
+                                            {#<div class="font-italic">#}
+                                                {#{{ comment.message }}#}
+                                            {#</div>#}
+                                        {#</footer>#}
+                                    {#</blockquote>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#{% endfor %}#}
+                    {#{% endif %}#}
+                </div>
+            </div>
         </div>
     </div>
-</div>
-    <a href="{{ path('article_index') }}">Retour à la liste des articles</a>
-    <hr>
-    <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
-
-    {{ include('article/_delete_form.html.twig') }}
+    <input type="hidden" value="{{ article.id }}" id="idArticle">
 {% endblock %}
