@@ -48,9 +48,11 @@ class Article
     private $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Theme::class, inversedBy="nom")
+     * @ORM\ManyToOne(targetEntity=Theme::class, inversedBy="articles")
      */
     private $noms;
+
+
     
     public function getId(): ?int
     {
@@ -140,5 +142,6 @@ class Article
 
         return $this;
     }
+
 
 }

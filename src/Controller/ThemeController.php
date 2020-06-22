@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Theme;
-use App\Form\ThemeType;
+use App\Form\Theme2Type;
 use App\Repository\ThemeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,12 +26,12 @@ class ThemeController extends AbstractController
     }
 
     /**
-     * @Route("/symfony server:sart ", name="theme_new", methods={"GET","POST"})
+     * @Route("/new", name="theme_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
         $theme = new Theme();
-        $form = $this->createForm(ThemeType::class, $theme);
+        $form = $this->createForm(Theme2Type::class, $theme);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class ThemeController extends AbstractController
      */
     public function edit(Request $request, Theme $theme): Response
     {
-        $form = $this->createForm(ThemeType::class, $theme);
+        $form = $this->createForm(Theme2Type::class, $theme);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
