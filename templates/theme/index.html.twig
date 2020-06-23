@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Nom</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -16,6 +17,7 @@
         {% for theme in themes %}
             <tr>
                 <td>{{ theme.id }}</td>
+                <td>{{ theme.name }}</td>
                 <td>
                     <a href="{{ path('theme_show', {'id': theme.id}) }}">show</a>
                     <a href="{{ path('theme_edit', {'id': theme.id}) }}">edit</a>
@@ -23,7 +25,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="2">no records found</td>
+                <td colspan="3">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

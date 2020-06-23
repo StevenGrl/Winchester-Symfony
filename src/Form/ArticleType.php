@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use App\Entity\Theme;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,6 +19,17 @@ class ArticleType extends AbstractType
             ->add('State')
             ->add('NbViews')
             ->add('Image')
+            ->add('themes', EntityType::class, [
+                'class' => Theme::class,
+                'label' => 'Thème(s)',
+                'multiple' => true,
+                'label_attr' => ['class' => 'ml-3'],
+                'attr' => [
+                    'class' => 'custom-select-lg',
+                    'size' => '6'
+                ],
+                'required' => false
+            ])
         ;
     }
 

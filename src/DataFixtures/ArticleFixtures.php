@@ -12,6 +12,8 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
+        $users = UserFixtures::USERS;
+        $themes = ThemeFixtures::THEMES;
         $faker = Factory::create('fr_FR');
         foreach (range(1,10) as $i) {
             $article = new Article();
@@ -21,6 +23,7 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
             $article->setContent($faker->paragraphs(3, true));
             $article->setState(true);
             $article->setImage('https://tmssl.akamaized.net/images/foto/normal/kevin-prince-boateng-besiktas-1587123285-36609.jpg');
+            $article->setTheme($this->getReference('theme' . $faker->numberBetween(0, count($themes) - 1)));
             $this->addReference('article' . $i, $article);
 
             $manager->persist($article);
@@ -32,6 +35,7 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return array(
+            ThemeFixtures::class,
             UserFixtures::class,
         );
     }

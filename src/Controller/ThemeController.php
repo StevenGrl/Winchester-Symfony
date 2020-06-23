@@ -26,7 +26,7 @@ class ThemeController extends AbstractController
     }
 
     /**
-     * @Route("/symfony server:sart ", name="theme_new", methods={"GET","POST"})
+     * @Route("/new", name="theme_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {

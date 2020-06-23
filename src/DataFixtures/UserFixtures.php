@@ -11,6 +11,8 @@ class UserFixtures extends Fixture
 {
     private $encoder;
 
+    public const USERS = ['steven', 'badr'];
+
     public function __construct(UserPasswordEncoderInterface $encoder)
     {
         $this->encoder = $encoder;

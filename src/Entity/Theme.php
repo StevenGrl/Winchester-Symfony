@@ -20,13 +20,18 @@ class Theme
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="noms")
+     * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    private $name;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="theme")
+     */
+    private $articles;
 
     public function __construct()
     {
-        $this->nom = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -34,31 +39,43 @@ class Theme
         return $this->id;
     }
 
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Article[]
      */
-    public function getNom(): Collection
+    public function getArticles(): Collection
     {
-        return $this->nom;
+        return $this->articles;
     }
 
-    public function addNom(Article $nom): self
+    public function addArticle(Article $article): self
     {
-        if (!$this->nom->contains($nom)) {
-            $this->nom[] = $nom;
-            $nom->setNoms($this);
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->setTheme($this);
         }
 
         return $this;
     }
 
-    public function removeNom(Article $nom): self
+    public function removeArticle(Article $article): self
     {
-        if ($this->nom->contains($nom)) {
-            $this->nom->removeElement($nom);
+        if ($this->articles->contains($article)) {
+            $this->articles->removeElement($article);
             // set the owning side to null (unless already changed)
-            if ($nom->getNoms() === $this) {
-                $nom->setNoms(null);
+            if ($article->getTheme() === $this) {
+                $article->setTheme(null);
             }
         }
 
