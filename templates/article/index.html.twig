@@ -31,7 +31,7 @@
                     <div>
                         {#{% for category in article.categories  %}#}
                             <a class="badge badge-info" href="{{ path('article_index') }}{# {{ path('category_article_index', {'id': category.id}) }} #}">
-                                {#{{ category.name }}#} Nom de la catégorie
+                                {{ article.theme.name }}
                             </a>
                         {#{% endfor %}#}
                         <span class="ml-2">

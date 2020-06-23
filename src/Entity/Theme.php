@@ -22,10 +22,10 @@ class Theme
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="noms")
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="theme")
      */
     private $articles;
 
@@ -39,14 +39,14 @@ class Theme
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getName(): ?string
     {
-        return $this->nom;
+        return $this->name;
     }
 
-    public function setNom(string $nom): self
+    public function setName(string $name): self
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
@@ -63,7 +63,7 @@ class Theme
     {
         if (!$this->articles->contains($article)) {
             $this->articles[] = $article;
-            $article->setNoms($this);
+            $article->setTheme($this);
         }
 
         return $this;
@@ -74,8 +74,8 @@ class Theme
         if ($this->articles->contains($article)) {
             $this->articles->removeElement($article);
             // set the owning side to null (unless already changed)
-            if ($article->getNoms() === $this) {
-                $article->setNoms(null);
+            if ($article->getTheme() === $this) {
+                $article->setTheme(null);
             }
         }
 

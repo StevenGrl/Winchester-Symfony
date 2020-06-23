@@ -50,8 +50,7 @@ class Article
     /**
      * @ORM\ManyToOne(targetEntity=Theme::class, inversedBy="articles")
      */
-    private $noms;
-
+    private $theme;
 
     
     public function getId(): ?int
@@ -131,17 +130,15 @@ class Article
         return $this;
     }
 
-    public function getNoms(): ?Theme
+    public function getTheme(): ?Theme
     {
-        return $this->noms;
+        return $this->theme;
     }
 
-    public function setNoms(?Theme $noms): self
+    public function setTheme(?Theme $theme): self
     {
-        $this->noms = $noms;
+        $this->theme = $theme;
 
         return $this;
     }
-
-
 }
