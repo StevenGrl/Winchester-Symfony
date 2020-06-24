@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Article;
 use App\Entity\Theme;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,7 +20,7 @@ class ArticleType extends AbstractType
             ->add('State')
             ->add('NbViews')
             ->add('Image')
-            ->add('themes', EntityType::class, [
+            ->add('theme', EntityType::class, [
                 'class' => Theme::class,
                 'label' => 'Thème(s)',
                 'multiple' => true,
