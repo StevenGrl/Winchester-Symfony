@@ -19,6 +19,18 @@ class ThemeRepository extends ServiceEntityRepository
         parent::__construct($registry, Theme::class);
     }
 
+    public function findAllWithNbArticles()
+    {
+        $query = $this->createQueryBuilder('t')
+            ->orderBy('t.name', 'ASC')
+            ->leftJoin('t.articles','a')
+            ->groupBy('t.name')
+//            ->where('a.state = true')
+            ->addSelect('count(a) as nbArticles')
+        ;
+        return $query->getQuery()->getResult();
+    }
+
     // /**
     //  * @return Theme[] Returns an array of Theme objects
     //  */

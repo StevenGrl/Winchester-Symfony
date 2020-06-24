@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Theme;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -90,5 +92,26 @@ class ArticleController extends AbstractController
         }
 
         return $this->redirectToRoute('article_index');
+    }
+
+    /**
+     * @param int $nbArticles
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function recentArticlesAction($nbArticles = 3, EntityManagerInterface $em): Response
+    {
+        $themes = $em->getRepository(Theme::class)->findAllWithNbArticles();
+
+        $nbArticlesTotal = 0;
+
+        foreach ($themes as $theme) {
+            $nbArticlesTotal += $theme['nbArticles'];
+        }
+
+        return $this->render('leftMenu.html.twig', [
+            'nbArticlesTotal' => $nbArticlesTotal,
+            'categories' => $themes
+        ]);
     }
 }

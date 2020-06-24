@@ -1,0 +1,26 @@
+<div class="mt-5 m-4">
+    <div class="card w-100 mb-3 justify-content-center mx-auto">
+        <div class="card w-100">
+            <div class="card-header text-center">
+                Liste des catégories
+            </div>
+            <ul class="list-group list-group-flush text-center">
+                <li class="list-group-item">
+                    <a href="{{ path('article_index') }}" class="text-decoration-none">
+                        Toutes les catégories
+                    </a>
+                    <span class="badge badge-primary">{{ nbArticlesTotal }}</span>
+                </li>
+                {% for category in categories %}
+                    <li class="list-group-item">
+                        {#<a href="{{ path('category_article_index', {'id': category[0].id}) }}"#}
+                           {#class="text-decoration-none">#}
+                            {{ category[0].name }}
+                        {#</a>#}
+                        <span class="badge badge-primary">{{ category['nbArticles'] }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
