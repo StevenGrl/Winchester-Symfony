@@ -62,5 +62,12 @@
                 {% endfor %}
             </div>
         </div>
+        <div class="mx-auto">
+            {% if id is defined %}
+                {{ include('_pagination.html.twig', {'currentPath': currentPath, 'page': page, 'nbPage': nbPage, 'id': id}) }}
+            {% else %}
+                {{ include('_pagination.html.twig', {'currentPath': currentPath, 'page': page, 'nbPage': nbPage}) }}
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

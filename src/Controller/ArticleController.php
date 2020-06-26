@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -18,13 +19,33 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("/", name="article_index", methods={"GET"})
+     * @Route("/{page}", defaults={"page": 1}, name="article_index", methods={"GET"})
      */
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(int $page, EntityManagerInterface $em): Response
     {
-        return $this->render('article/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
-        ]);
+        if ($page >= 1) {
+            $nbPerPage = $this->getParameter('nbPerPage');
+            $currentPath = 'article_index';
+
+            $articles = $em->getRepository('App:Article')
+                ->findOnlyPublishedWithPaging($page, $nbPerPage);
+
+            $nbPage = intval(ceil(count($articles) / $nbPerPage));
+
+            if ($page > $nbPage) {
+                throw new NotFoundHttpException("La page $page n'existe pas");
+            }
+
+            return $this->render('article/index.html.twig',[
+                'page' => $page,
+                'nbPage' => $nbPage,
+                'currentPath' => $currentPath,
+                'articles' => $articles
+            ]);
+        } else {
+            throw new NotFoundHttpException("La page $page n'existe pas");
+        }
+
     }
 
     /**

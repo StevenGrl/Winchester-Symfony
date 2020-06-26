@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -17,6 +18,22 @@ class ArticleRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Article::class);
+    }
+
+    public function findOnlyPublishedWithPaging(int $currentPage, int $nbPerPage)
+    {
+        $query = $this->createQueryBuilder('a')
+//            ->where('a.state = true')
+//            ->orderBy('a.created_at', 'DESC')
+//            ->leftJoin('a.comments', 'c')
+//            ->leftJoin('a.categories', 'cat')
+//            ->addSelect('c')
+//            ->addSelect('cat')
+//            ->addOrderBy('c.created_at', 'DESC')
+            ->setFirstResult(($currentPage - 1) * $nbPerPage)
+            ->setMaxResults($nbPerPage);
+
+        return new Paginator($query);
     }
 
     // /**
