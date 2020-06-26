@@ -35,7 +35,7 @@ class Article
     /**
      * @ORM\Column(type="boolean")
      */
-    private $state;
+    private $isPublished;
 
     /**
      * @ORM\Column(type="integer")
@@ -94,14 +94,14 @@ class Article
         return $this;
     }
 
-    public function getState(): ?bool
+    public function getIsPublished(): ?bool
     {
-        return $this->state;
+        return $this->isPublished;
     }
 
-    public function setState(bool $state): self
+    public function setIsPublished(bool $isPublished): self
     {
-        $this->state = $state;
+        $this->isPublished = $isPublished;
 
         return $this;
     }

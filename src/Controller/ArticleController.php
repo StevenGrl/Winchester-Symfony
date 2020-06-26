@@ -18,6 +18,29 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ArticleController extends AbstractController
 {
+        /**
+     * @Route("/new", name="article_new", methods={"GET","POST"})
+     */
+    public function new(Request $request): Response
+    {
+        $article = new Article();
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($article);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('article_index');
+        }
+
+        return $this->render('article/new.html.twig', [
+            'article' => $article,
+            'form' => $form->createView(),
+        ]);
+    }
+
     /**
      * @Route("/{page}", defaults={"page": 1}, name="article_index", methods={"GET"})
      */
@@ -46,29 +69,6 @@ class ArticleController extends AbstractController
             throw new NotFoundHttpException("La page $page n'existe pas");
         }
 
-    }
-
-    /**
-     * @Route("/new", name="article_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $article = new Article();
-        $form = $this->createForm(ArticleType::class, $article);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($article);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('article_index');
-        }
-
-        return $this->render('article/new.html.twig', [
-            'article' => $article,
-            'form' => $form->createView(),
-        ]);
     }
 
     /**
@@ -134,5 +134,41 @@ class ArticleController extends AbstractController
             'nbArticlesTotal' => $nbArticlesTotal,
             'categories' => $themes
         ]);
+    }
+
+    /**
+     * @Route("/theme/{id}/{page}",
+     *     defaults={"page": 1, "id": 0},
+     *     name="theme_article_index", methods={"GET"}
+     *     )
+     */
+    public function indexByThemeAction(int $id, int $page, EntityManagerInterface $em): Response
+    {
+        if ($id == 0) {
+            $id = $em->getRepository('App:Theme')->findOneBy([])->getId();
+        }
+        if ($id > 0) {
+            $nbPerPage = $this->getParameter('nbPerPage');
+            $currentPath = 'theme_article_index';
+
+            $theme = $em->getRepository('App:Theme')->find($id);
+
+            $articles = $em->getRepository('App:Article')->findOnlyPublishedByTheme($theme, $page, $nbPerPage);
+
+            $nbPage = intval(ceil(count($articles) / $nbPerPage));
+
+            $title = $theme->getName();
+
+            return $this->render("article/list.html.twig",[
+                'id' => $id,
+                'title' => $title,
+                'currentPath' => $currentPath,
+                'page' => $page,
+                'nbPage' => $nbPage,
+                'articles' => $articles
+            ]);
+        } else {
+            throw new NotFoundHttpException('Cette page n\'existe pas');
+        }
     }
 }

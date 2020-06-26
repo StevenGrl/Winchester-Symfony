@@ -18,21 +18,21 @@ class ArticleType extends AbstractType
     {
         $builder
 
-            ->add('Subject', TextType::class, [
+            ->add('subject', TextType::class, [
                 'label' => 'Sujet',
                 'attr' => [
                     'placeholder' => 'Sujet de l\'article',
                     'autofocus' => true
                 ]
             ])
-            ->add('Title', TextType::class, [
+            ->add('title', TextType::class, [
                 'label' => 'Titre',
                 'attr' => [
                     'placeholder' => 'Titre de l\'article',
                     'autofocus' => true
                 ]
             ])
-            ->add('Content', TextareaType::class, [
+            ->add('content', TextareaType::class, [
                 'label' => 'Contenu',
                 'attr' => [
                     'rows' => '3',
@@ -40,20 +40,19 @@ class ArticleType extends AbstractType
                 ],
                 'required' => false
             ])
-            ->add('State', TextType::class, [
+            ->add('isPublished', TextType::class, [
                 'label' => 'Etat',
                 'attr' => [
                     'placeholder' => 'Etat de l\'article',
                     'autofocus' => true
                 ]
             ])
-            ->add('Image', FileType::class,[
+            ->add('image', FileType::class,[
                 'label'=>'Image',
             ])
-            ->add('Theme', EntityType::class, [
+            ->add('theme', EntityType::class, [
                 'class' => Theme::class,
-                'label' => 'Thème(s)',
-                'multiple' => true,
+                'label' => 'Thème',
                 'label_attr' => ['class' => 'ml-3'],
                 'attr' => [
                     'class' => 'custom-select-lg',

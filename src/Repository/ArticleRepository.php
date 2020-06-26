@@ -23,7 +23,7 @@ class ArticleRepository extends ServiceEntityRepository
     public function findOnlyPublishedWithPaging(int $currentPage, int $nbPerPage)
     {
         $query = $this->createQueryBuilder('a')
-//            ->where('a.state = true')
+            ->where('a.isPublished = true')
 //            ->orderBy('a.created_at', 'DESC')
 //            ->leftJoin('a.comments', 'c')
 //            ->leftJoin('a.categories', 'cat')
