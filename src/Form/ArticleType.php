@@ -42,11 +42,9 @@ class ArticleType extends AbstractType
                 'required' => false
             ])
             ->add('isPublished', CheckboxType::class, [
-                'label' => 'Etat',
-                'attr' => [
-                    'placeholder' => 'Etat de l\'article',
-                    'autofocus' => true
-                ]
+                'label' => 'Publier',
+                'attr' => ['class' => 'custom-control-input'],
+                'label_attr' => ['class' => 'custom-control-label'],
             ])
             ->add('image', FileType::class,[
                 'label'=>'Image',
