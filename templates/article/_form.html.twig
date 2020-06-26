@@ -6,46 +6,34 @@
         <div class="card-body">
             <div class="font-weight-bold d-flex justify-content-center">
                 {{ form_start(form) }}
-                <div class="form-group row">
-                    <label for="Title" class="col-sm-2 col-form-label">{{ form_label(form.Title) }}</label>
-                    <div class="col-sm-10">
-                        {{ form_widget(form.Title) }}
-                    </div>
+                <div class="form-group">
+                    <label for="Title">{{ form_label(form.Title) }}</label>
+                    {{ form_widget(form.Title) }}
                 </div>
-                <div class="form-group row">
-                    <label for="Subject" class="col-sm-2 col-form-label">{{ form_label(form.Subject) }} </label>
-                    <div class="col-sm-10">
-                        {{ form_widget(form.Subject) }}
-                    </div>
+                <div class="form-group">
+                    <label for="Subject">{{ form_label(form.Subject) }}</label>
+                    {{ form_widget(form.Subject) }}
                 </div>
-                <div class="form-group row">
-                    <label for="Content" class="col-sm-2 col-form-label">{{ form_label(form.Content) }}</label>
-                    <div class="col-sm-10">
-                        {{ form_widget(form.Content) }}
-                    </div>
+                <div class="form-group">
+                    <label for="Subject">{{ form_label(form.Content) }}</label>
+                    {{ form_widget(form.Content) }}
                 </div>
-                <div class="form-group row">
-                    <label for="State" class="col-sm-2 col-form-label">{{ form_label(form.State) }}</label>
-                    <div class="col-sm-10">
-                        {{ form_widget(form.State) }}
-                    </div>
+                <div class="form-group">
+                    <label for="Subject">{{ form_label(form.State) }}</label>
+                    {{ form_widget(form.State) }}
                 </div>
-                <div class="form-group row">
-                    <label for="Image" class="col-sm-2 col-form-label">{{ form_label(form.Image) }} </label>
-                    <div class="col-sm-10">
-                        {{ form_widget(form.Image) }}
-                    </div>
+                <div class="form-group">
+                    <label for="Subject">{{ form_label(form.Image) }}</label>
+                    {{ form_widget(form.Image) }}
                 </div>
-                <div class="form-group row">
-                    <label for="Theme" class="col-sm-2 col-form-label">{{ form_label(form.Theme) }} </label>
-                    <div class="col-sm-10">
-                        {{ form_widget(form.Theme) }}
-                    </div>
+                <div class="form-group">
+                    <label for="Subject">{{ form_label(form.Theme) }}</label>
+                    {{ form_widget(form.Theme) }}
                 </div>
             </div>
         </div>
         <div class="text-center">
-            <button type="button" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-primary btn-sm">Sauvegarder</button>
         </div>
         {{ form_end(form) }}
     </div>

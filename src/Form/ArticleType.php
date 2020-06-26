@@ -52,12 +52,11 @@ class ArticleType extends AbstractType
             ])
             ->add('Theme', EntityType::class, [
                 'class' => Theme::class,
-                'label' => 'Thème(s)',
+                'label' => 'Thèmes',
                 'multiple' => true,
-                'label_attr' => ['class' => 'ml-3'],
                 'attr' => [
                     'class' => 'custom-select-lg',
-                    'size' => '10'
+                    'size' => '4'
                 ],
                 'required' => false
             ])
