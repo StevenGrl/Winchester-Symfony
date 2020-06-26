@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Entity\Theme;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -40,7 +41,7 @@ class ArticleType extends AbstractType
                 ],
                 'required' => false
             ])
-            ->add('isPublished', TextType::class, [
+            ->add('isPublished', CheckboxType::class, [
                 'label' => 'Etat',
                 'attr' => [
                     'placeholder' => 'Etat de l\'article',
@@ -56,7 +57,7 @@ class ArticleType extends AbstractType
                 'label_attr' => ['class' => 'ml-3'],
                 'attr' => [
                     'class' => 'custom-select-lg',
-                    'size' => '10'
+                    'size' => '4'
                 ],
                 'required' => false
             ])
