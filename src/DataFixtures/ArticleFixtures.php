@@ -21,7 +21,7 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
             $article->setTitle($faker->words(4, true));
             $article->setNbViews(0);
             $article->setContent($faker->paragraphs(3, true));
-            $article->setState(true);
+            $article->setIsPublished(true);
             $article->setImage('https://tmssl.akamaized.net/images/foto/normal/kevin-prince-boateng-besiktas-1587123285-36609.jpg');
             $article->setTheme($this->getReference('theme' . $faker->numberBetween(0, count($themes) - 1)));
             $this->addReference('article' . $i, $article);
