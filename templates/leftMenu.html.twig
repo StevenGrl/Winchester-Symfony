@@ -11,13 +11,13 @@
                     </a>
                     <span class="badge badge-primary">{{ nbArticlesTotal }}</span>
                 </li>
-                {% for category in categories %}
+                {% for theme in themes %}
                     <li class="list-group-item">
-                        {#<a href="{{ path('category_article_index', {'id': category[0].id}) }}"#}
-                           {#class="text-decoration-none">#}
-                            {{ category[0].name }}
-                        {#</a>#}
-                        <span class="badge badge-primary">{{ category['nbArticles'] }}</span>
+                        <a href="{{ path('theme_article_index', {'id': theme[0].id}) }}"
+                           class="text-decoration-none">
+                            {{ theme[0].name }}
+                        </a>
+                        <span class="badge badge-primary">{{ theme['nbArticles'] }}</span>
                     </li>
                 {% endfor %}
             </ul>

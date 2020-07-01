@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Article;
+use App\Entity\Theme;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
@@ -32,6 +33,25 @@ class ArticleRepository extends ServiceEntityRepository
 //            ->addOrderBy('c.created_at', 'DESC')
             ->setFirstResult(($currentPage - 1) * $nbPerPage)
             ->setMaxResults($nbPerPage);
+
+        return new Paginator($query);
+    }
+
+    public function findOnlyPublishedByTheme(Theme $theme, int $currentPage, int $nbPerPage)
+    {
+        $query = $this->createQueryBuilder('a')
+            ->where('a.isPublished = true')
+            ->andWhere('t = :theme')
+//            ->orderBy('a.created_at', 'DESC')
+            ->leftJoin('a.theme', 't')
+            ->leftJoin('a.theme', 'theme')
+//            ->leftJoin('a.comments', 'com')
+            ->addSelect('theme')
+//            ->addSelect('com')
+            ->setParameter(':theme', $theme)
+            ->setFirstResult(($currentPage - 1) * $nbPerPage)
+            ->setMaxResults($nbPerPage);
+        ;
 
         return new Paginator($query);
     }
