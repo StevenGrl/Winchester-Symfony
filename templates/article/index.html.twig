@@ -5,13 +5,13 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row">
-            <div class="col-3 d-none d-lg-block">
+            {# <div class="col-3 d-none d-lg-block"> #}
                 {% block leftMenu %}
                     {% if is_granted("ROLE_USER") %}
                         {{ render(controller('App\\Controller\\ArticleController::recentArticlesAction', {'nbArticles': 3 } )) }}
                     {% endif %}
                 {% endblock %}
-            </div>
+            {# </div> #}
             <div class="col col-lg-7 mr-auto mt-3">
                 <h1 class="text-primary text-center my-3">
                     Liste des articles
