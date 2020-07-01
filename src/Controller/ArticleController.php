@@ -42,7 +42,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{page}", defaults={"page": 1}, name="article_index", methods={"GET"})
+     * @Route("/page/{page}", defaults={"page": 1}, name="article_index", methods={"GET"})
      */
     public function index(int $page, EntityManagerInterface $em): Response
     {
