@@ -5,14 +5,14 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row">
-            {# <div class="col-3 d-none d-lg-block"> #}
-                {% block leftMenu %}
-                    {% if is_granted("ROLE_USER") %}
-                        {{ render(controller('App\\Controller\\ArticleController::recentArticlesAction', {'nbArticles': 3 } )) }}
-                    {% endif %}
-                {% endblock %}
-            {# </div> #}
-            <div class="col col-lg-7 mr-auto mt-3">
+            {% block leftMenu %}
+                {% if is_granted("ROLE_USER") %}
+                    {{ render(controller('App\\Controller\\ArticleController::recentArticlesAction', {'nbArticles': 3 } )) }}
+                {% endif %}
+            {% endblock %}
+
+            {# <div class="col col-lg-7 mr-auto mt-3"> #}
+            <div class="col col-lg-7 mx-auto mt-3">
                 <h1 class="text-primary text-center my-3">
                     Liste des articles
                     {% if title is defined %}
@@ -64,6 +64,19 @@
                         </div>
                     </div>
                 {% endfor %}
+            </div>
+            <div class="col-md-3 col-lg-2 d-md-block py-3 pr-3 pl-0">
+                <div class="card">
+                    <div class="card-body p-3">
+                        <h5 class="card-title">Recherche</h5>
+                        <form class="form-inline">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Rechercher..." aria-label="Rechercher">
+                            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="mx-auto">
