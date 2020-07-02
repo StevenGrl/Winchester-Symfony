@@ -32,6 +32,14 @@ a.Evenementiel {
 }
 
 
+/* Left Menu */
+
+#sidebarMenu {
+    height: calc(100vh - 48px);
+    position: fixed;
+}
+
+
 /* List articles */
 
 .move-arrow:hover .fa-arrow-right {

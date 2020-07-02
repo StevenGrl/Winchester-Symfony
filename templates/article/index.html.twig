@@ -5,14 +5,16 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row">
-            {% block leftMenu %}
-                {% if is_granted("ROLE_USER") %}
-                    {{ render(controller('App\\Controller\\ArticleController::recentArticlesAction', {'nbArticles': 3 } )) }}
-                {% endif %}
-            {% endblock %}
+            <div>
+                {% block leftMenu %}
+                    {% if is_granted("ROLE_USER") %}
+                        {{ render(controller('App\\Controller\\ArticleController::recentArticlesAction', {'nbArticles': 3 } )) }}
+                    {% endif %}
+                {% endblock %}
+            </div>
 
             <div class="col-8 mt-3 mx-auto">
-                <h1 class="text-dark my-3">
+                <h1 class="text-dark my-4">
                     Liste des articles
                     {% if title is defined %}
                          - {{ title }}
@@ -65,6 +67,13 @@
                                 </div>
                             </div>
                         {% endfor %}
+                        <div class="mx-auto">
+                            {% if id is defined %}
+                                {{ include('_pagination.html.twig', {'currentPath': currentPath, 'page': page, 'nbPage': nbPage, 'id': id}) }}
+                            {% else %}
+                                {{ include('_pagination.html.twig', {'currentPath': currentPath, 'page': page, 'nbPage': nbPage}) }}
+                            {% endif %}
+                        </div>
                     </div>
                     <div class="col-3 pl-0">
                         <div class="card">
@@ -81,13 +90,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="mx-auto">
-            {% if id is defined %}
-                {{ include('_pagination.html.twig', {'currentPath': currentPath, 'page': page, 'nbPage': nbPage, 'id': id}) }}
-            {% else %}
-                {{ include('_pagination.html.twig', {'currentPath': currentPath, 'page': page, 'nbPage': nbPage}) }}
-            {% endif %}
         </div>
     </div>
 {% endblock %}
