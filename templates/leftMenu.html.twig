@@ -1,26 +1,28 @@
-<div class="mt-5 m-4">
-    <div class="card w-100 mb-3 justify-content-center mx-auto">
-        <div class="card w-100">
-            <div class="card-header text-center">
-                Liste des catégories
-            </div>
-            <ul class="list-group list-group-flush text-center">
-                <li class="list-group-item">
-                    <a href="{{ path('article_index') }}" class="text-decoration-none">
-                        Toutes les catégories
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white sidebar collapse">
+    <div class="sidebar-sticky pt-3">
+
+        <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3">
+          <span>Catégories</span>
+        </h5>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <a class="nav-link text-secondary" href="{{ path('article_index') }}">
+              {# <span data-feather="file-text"></span> #}
+              Toutes les catégories
+              <span class="badge badge-primary">{{ nbArticlesTotal }}</span>
+            </a>            
+          </li>
+
+            {% for theme in themes %}
+                <li class="nav-item">
+                    <a class="nav-link text-secondary" href="{{ path('theme_article_index', {'id': theme[0].id}) }}">
+                    {# <span data-feather="file-text"></span> #}
+                    {{ theme[0].name }}
+                    <span class="badge badge-primary">{{ theme['nbArticles'] }}</span>
                     </a>
-                    <span class="badge badge-primary">{{ nbArticlesTotal }}</span>
                 </li>
-                {% for theme in themes %}
-                    <li class="list-group-item">
-                        <a href="{{ path('theme_article_index', {'id': theme[0].id}) }}"
-                           class="text-decoration-none">
-                            {{ theme[0].name }}
-                        </a>
-                        <span class="badge badge-primary">{{ theme['nbArticles'] }}</span>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
+            {% endfor %}
+          
+        </ul>
     </div>
-</div>
+</nav>
