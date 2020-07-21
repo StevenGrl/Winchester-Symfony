@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Album index{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mt-3">Liste des albums</h1>
+    <div class="row">
+        {% for album in albums %}
+            <div class="col-4">
+                <p class="display-4 text-center">{{ album.title }}</p>
+                <div class="album-img">
+                    <img src="{{ asset("images/upload/" ~ album.image) }}" class="rounded mr-3 float-left img-fluid" alt="">
+                    <span class="text-description p-1 rounded">
+                            {{ album.description }}
+                    </span>
+                </div>
+            </div>
+            {% else %}
+                <h2 class="text-center">Il n'y a pas d'album pour le moment</h2>
+        {% endfor %}
+    </div>
+
+    <a href="{{ path('album_new') }}" class="btn btn-primary mt-3 ml-3">Créer un nouvel album</a>
+{% endblock %}
