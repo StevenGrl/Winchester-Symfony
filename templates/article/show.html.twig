@@ -3,7 +3,7 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-    <div class="jumbotron mb-3 bg-light p-0 pb-4 my-4" id="view_jumbotron">
+    <div class="jumbotron mb-3 bg-light p-0 pb-4 my-4" id="view_jumbotron" xmlns="http://www.w3.org/1999/html">
         <div class="row mb-3">
             <div class="col-12">
                 <img src="{{ asset(article.image) }}" class="img-fluid rounded-top img-cover" alt="">
@@ -107,5 +107,24 @@
             </div>
         </div>
     </div>
+
+    <div class="AjoutCommentaires">
+    <h2>Ajouter Un Commentaire : </h2>
+    {{ form (Commentform) }}
+    </div>
+
+    <div class="ListCommentaires">
+        <h2>Liste des Commentaires : </h2>
+        {% for comment in article.comments %}
+            <div class="card">
+                <div class="card-body">
+                    {{ comment.content }}
+                </div>
+            </div>
+            <br>
+
+        {% endfor %}
+    </div>
+
     <input type="hidden" value="{{ article.id }}" id="idArticle">
 {% endblock %}
