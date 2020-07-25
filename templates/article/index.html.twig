@@ -23,49 +23,37 @@
                 <div class="row">
                     <div class="col-9">
                         {% for article in articles %}
-                            <div class="jumbotron mb-3 bg-white border p-0">
-                                <div class="row p-3">
-                                    <div class="col-3 my-auto">
-                                        <img src="{{ asset(article.image) }}"
-                                            class="img-fluid rounded" alt="image en chargement ou corompue">
+                        
+                            <div class="article_card">
+                                <div class="article_img">
+                                    <img src="{{ asset(article.image) }}" alt="Image illustrant l'article" class="background_img" />
+                                    <div class="article_details">
+                                        <span class="article_views"><i class="far fa-eye fa-sm"></i> {{ article.nbViews }}</span>
+                                        <span class="article_comments"><i class="far fa-comments"></i> {{ article.comments|length }}</span>
+                                        <span class="article_date">
+                                            <i class="far fa-calendar-alt"></i>
+                                            16/06/2020
+                                            {#{{ article.createdAt|date('d:m:Y h:m:s') }}#}
+                                            {#{% if article.createdAt|date('d:m:Y h:m') < article.updatedAt|date('d:m:Y h:m') %}#}
+                                            {#{{ 'blog.updated_at'|trans }} : {{ article.updatedAt|date('d:m:Y h:m:s') }}#}
+                                            {#{% endif %}#}
+                                        </span>
                                     </div>
-                                    <div class="col-9">
-                                        <h2>
-                                            <a href="{{ path('article_show', { 'id': article.id }) }}"
-                                            class="text-decoration-none text-primary font-weight-normal font-italic">
-                                                {{ article.title|capitalize }}
-                                            </a>
-                                        </h2>
-                                        <div class="details">
-                                            <p class="font-weight-light font-italic text-muted mb-0">
-                                                <small>Date de création :
-                                                    16/06/2020{#{{ article.createdAt|date('d:m:Y h:m:s') }}#}
-                                                    {#{% if article.createdAt|date('d:m:Y h:m') < article.updatedAt|date('d:m:Y h:m') %}#}
-                                                    {#{{ 'blog.updated_at'|trans }} : {{ article.updatedAt|date('d:m:Y h:m:s') }}#}
-                                                    {#{% endif %}#}
-                                                </small>
-                                            </p>
-                                        </div>
-                                        <div>
-                                            {#{% for category in article.categories  %}#}
-                                            <a class="badge badge-info"
-                                            href="{{ path('article_index') }}{# {{ path('category_article_index', {'id': category.id}) }} #}">
-                                                {{ article.theme.name }}
-                                            </a>
-                                            {#{% endfor %}#}
-                                            <span class="ml-2">
-                                    {{ article.nbViews }} <i class="far fa-eye fa-sm"></i> |
-                                    {#{{ article.comments|length }}#} 0 <i class="far fa-comments"></i>
-                                </span>
-                                        </div>
-                                        <span class="text-muted">{{ article.content|slice(0, sliceLength) ~ '...' }}</span>
-                                        <a class="text-decoration-none move-arrow"
-                                        href="{{ path('article_show', {'id': article.id}) }}" role="button">
-                                            Voir plus <i class="fas fa-arrow-right fa-sm"></i>
-                                        </a>
+                                </div>
+                                <div class="article_data">
+                                    <h2 class="article_title">{{ article.title|capitalize }}</h2>
+                                    {#{% for category in article.categories  %}#}
+                                    <a class="article_category" href="{{ path('article_index') }}{# {{ path('category_article_index', {'id': category.id}) }} #}">
+                                        {{ article.theme.name }}
+                                    </a>
+                                    {#{% endfor %}#}
+                                    <p class="article_desc">{{ article.content|slice(0, sliceLength) ~ '...' }}</p>
+                                    <div class="cta">
+                                        <a href="{{ path('article_show', { 'id': article.id }) }}" role="button">Voir plus &rarr;</a>
                                     </div>
                                 </div>
                             </div>
+
                         {% endfor %}
                         <div class="mx-auto">
                             {% if id is defined %}

@@ -1,9 +1,18 @@
-$primary: #3498DB;
+$primary: #600;
 @import "~bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+:root {
+    --red-gradient: linear-gradient(to right bottom, rgba(102, 0, 0, .8), rgba(150, 0, 0, .8))
+}
+
 body {
     background-color: #e8e8e8;
     font-family: 'Nunito', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 
@@ -25,7 +34,6 @@ body {
     min-width: 250px;
     height: 250px;
     margin: 10px;
-    // background: #dbdbdb;
     background: rgba(0, 0, 0, 0.05);
     border-radius: 15px;
     overflow: hidden;
@@ -138,33 +146,6 @@ body {
 }
 
 
-/* List articles */
-
-.move-arrow:hover .fa-arrow-right {
-    transition: margin-left .3s;
-    margin-left: 15px;
-}
-
-.move-arrow .fa-arrow-right {
-    transition: margin-left .3s;
-    margin-left: 0;
-}
-
-
-/* View article */
-
-.border-left {
-    border-left-width: 3px !important;
-}
-
-.img-cover {
-    object-fit: cover;
-    object-position: 50% 50%;
-    width: 100%;
-    height: 30vh;
-}
-
-
 /* Album */
 
 .album-img {
@@ -194,4 +175,188 @@ body {
             opacity: 0.8;
         }
     }
+}
+
+
+/* List articles */
+
+.article_card {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px .8rem 1rem rgba(0, 0, 0, .05);
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+}
+
+.article_img {
+    height: 25rem;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.background_img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    z-index: -1;
+    transition: transform .5s;
+}
+
+.article_card:hover .background_img {
+    transform: scale(1.1);
+}
+
+.article_details {
+    width: 100%;
+    height: 100%;
+    background: var(--red-gradient);
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+}
+
+.article_details i {
+    margin-right: .1rem;
+    margin-left: 1rem;
+}
+
+.article_views {
+    display: inline-block;
+    margin-bottom: .5rem;
+    transition: all .5s;
+}
+
+.article_comments {
+    display: inline-block;
+    transition: all .5s;
+}
+
+.article_date {
+    display: block;
+    bottom: 1rem;
+    position: absolute;
+}
+
+.article_data {
+    background-color: #FFF;
+    padding: 2rem 3rem;
+    position: relative;
+}
+
+.article_title {
+    font-size: 2.2rem;
+    line-height: 1;
+}
+
+.article_category {
+    font-size: 1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #A2A2A2;
+}
+
+.article_desc {
+    margin-top: 1rem;
+    position: relative;
+}
+
+.cta {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.cta a {
+    background: var(--red-gradient);
+    -webkit-background-clip: text;
+    color: transparent;
+    position: relative;
+}
+
+.cta a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -.5rem;
+    width: 100%;
+    height: 3px;
+    background: var(--red-gradient);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .5s;
+}
+
+.cta a:hover::before {
+    transform: scaleX(1);
+}
+
+@media screen and (min-width: 600px) {
+    .article_card {
+        flex-direction: row;
+        max-width: 75rem;
+    }
+    .article_img {
+        flex-basis: 40%;
+        height: unset;
+    }
+    .article_details {
+        transform: translateX(-100%);
+        transition: transform .5s;
+    }
+    .article_card:hover .article_details {
+        transform: translateX(0);
+    }
+    .article_views,
+    .article_comments {
+        transform: translateY(-3rem);
+        transition-delay: .3s;
+        opacity: 0;
+    }
+    .article_date {
+        transform: translateY(3rem);
+        transition: all .5s .3s;
+        opacity: 0;
+    }
+    .article_card:hover .article_views,
+    .article_card:hover .article_comments,
+    .article_card:hover .article_date {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    .article_data {
+        flex-basis: 60%;
+    }
+    .article_data:before {
+        content: '';
+        width: 3.5rem;
+        height: 100%;
+        background-color: white;
+        position: absolute;
+        top: 0;
+        left: -1.5rem;
+        z-index: 10;
+        transform: skewX(-5deg);
+    }
+}
+
+
+/* View article */
+
+.border-left {
+    border-left-width: 3px !important;
+}
+
+.img-cover {
+    object-fit: cover;
+    object-position: 50% 50%;
+    width: 100%;
+    height: 30vh;
 }
