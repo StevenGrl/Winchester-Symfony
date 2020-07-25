@@ -9,7 +9,7 @@ body {
 
 /* Dashboard cards */
 
-.container {
+.dashboard {
     position: relative;
     display: flex;
     flex-flow: row wrap;
@@ -19,7 +19,7 @@ body {
     margin: 0 auto;
 }
 
-.container .card {
+.dashboard .card {
     position: relative;
     width: 250px;
     min-width: 250px;
@@ -31,12 +31,12 @@ body {
     overflow: hidden;
 }
 
-.container a.card {
+.dashboard a.card {
     text-decoration: none;
     color: black;
 }
 
-.container .card:before {
+.dashboard .card:before {
     content: '';
     position: absolute;
     top: 0;
@@ -47,31 +47,31 @@ body {
     transition: 0.5s ease-in-out;
 }
 
-.container a.Artistique:before {
+.dashboard a.Artistique:before {
     background: #F1948A;
 }
 
-.container a.Journalisme:before {
+.dashboard a.Journalisme:before {
     background: #3498DB;
 }
 
-.container a.Administratif:before {
+.dashboard a.Administratif:before {
     background: #76D7C4;
 }
 
-.container a.E-Sport:before {
+.dashboard a.E-Sport:before {
     background: #BB8FCE;
 }
 
-.container a.Evenementiel:before {
+.dashboard a.Evenementiel:before {
     background: #F5B041;
 }
 
-.container .card:hover:before {
+.dashboard .card:hover:before {
     clip-path: circle(300px at 80% -60%);
 }
 
-.container .card .imgBx {
+.dashboard .card .imgBx {
     position: absolute;
     top: 12%;
     right: 10%;
@@ -81,22 +81,22 @@ body {
     transition: 0.5s ease-in-out;
 }
 
-.container a.Evenementiel .imgBx {
+.dashboard a.Evenementiel .imgBx {
     top: 10%;
     right: 5%;
 }
 
-.container a.Administratif .imgBx,
-.container a.E-Sport .imgBx {
+.dashboard a.Administratif .imgBx,
+.dashboard a.E-Sport .imgBx {
     top: 10%;
     right: 15%;
 }
 
-.container .card:hover .imgBx {
+.dashboard .card:hover .imgBx {
     top: 3%;
 }
 
-.container .card .imgBx i {
+.dashboard .card .imgBx i {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -104,7 +104,7 @@ body {
     color: rgba(0, 0, 0, 0.7);
 }
 
-.container .card .contentBx {
+.dashboard .card .contentBx {
     position: absolute;
     bottom: 6%;
     left: 3%;
@@ -114,17 +114,17 @@ body {
     z-index: 10;
 }
 
-.container .card:hover .contentBx {
+.dashboard .card:hover .contentBx {
     height: 30%;
 }
 
-.container .card .contentBx .info {
+.dashboard .card .contentBx .info {
     display: flex;
     padding-top: 1px;
     transition: 0.5s ease-in-out;
 }
 
-.container .card .contentBx h2 {
+.dashboard .card .contentBx h2 {
     font-size: 1.5em;
     font-weight: 700;
 }

@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1 class="text-center mt-3 mb-3 mx-auto">Dashboard</h1>
-    <div class="container">
+    <div class="dashboard">
         {% for theme, content in themes %}
             <a class="card {{ theme }}" href="{{ path(content[2]) }}">
                 <div class="imgBx">
