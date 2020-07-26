@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article{% endblock %}
+{% block title %}{{ article.title|capitalize }}{% endblock %}
 
 {% block body %}
     <div class="jumbotron mb-3 bg-light p-0 pb-4 my-4" id="view_jumbotron" xmlns="http://www.w3.org/1999/html">
@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-10 mx-auto">
                 <div class="row">
-                    <h2 class="d-inline-block col-10 pl-0">{{ article.title|capitalize }} - Auteur ?{# {{ article.author }} #}</h2>
+                    <h2 class="d-inline-block col-10 pl-0">{{ article.title|capitalize }}</h2>
                     {% if is_granted('edit', article) %}
                         <div class="d-inline-block my-auto ml-3">
                             <a href="{{ path('article_edit', {'id': article.id}) }}" class="btn btn-primary">
@@ -54,20 +54,18 @@
                 <div class="row">
                     <p class="col-12 pl-0 mb-0">
                         <small class="font-italic text-muted">
-                            Date de création : 17/06/2020 {# {{ article.createdAt|date('d:m:Y h:m:s') }} #}
+                            <i class="far fa-calendar-alt"></i> 17/06/2020{# {{ article.createdAt|date('d:m:Y h:m:s') }} #}
                             {#{% if article.createdAt|date('d:m:Y h:m') != article.updatedAt|date('d:m:Y h:m') %}#}
                                 {#| {{ 'blog.updated_at'|trans }} : {{ article.updatedAt|date('d:m:Y h:m:s') }}#}
                             {#{% endif %}#}
-                            |
                         </small>
                         {#{% for category in article.categories %}#}
                             {#<a class="badge badge-info" href="{{ path('category_article_index', {'id': category.id}) }}">#}
                                 {#{{ category.name }}#}
                             {#</a>#}
                         {#{% endfor %}#}
-                        <span>
-                            {{ article.nbViews }} <i class="far fa-eye fa-sm"></i> |
-                            {#{{ article.comments|length }} #}0 <i class="far fa-comments"></i>
+                        <small class="font-italic text-muted pl-2">
+                            <i class="far fa-eye fa-sm"></i> {{ article.nbViews }}
                             {#{% if is_granted('like', article) %}#}
                                 {#{% if article in app.user.favouriteArticles %}#}
                                     {#<i class="fas fa-heart fa-lg"></i>#}
@@ -75,12 +73,15 @@
                                     {#<i class="far fa-heart fa-sm"></i>#}
                                 {#{% endif %}#}
                             {#{% endif %}#}
-                        </span>
+                        </small>
                     </p>
                     <div class="col-12 pl-0">
                         <div class="dropdown-divider border border-secondary col-3"></div>
                     </div>
                     <p class="mb-0">{{ article.content }}</p>
+                    <small class="text-muted font-italic pt-3">
+                        <i class="fas fa-user fa-sm"></i> Auteur {# {{ article.author }} #}
+                    </small>
                     {#{% if article.comments|length > 0 %}#}
                         {#<div class="dropdown-divider mx-auto border border-secondary col-2 mt-3"></div>#}
                         {#<h2 class="mt-0 col-12 pl-0 text-center">~ {{ 'blog.view.comments.title'|trans }}  ~</h2>#}
@@ -108,22 +109,24 @@
         </div>
     </div>
 
-    <div class="AjoutCommentaires">
-    <h2>Ajouter Un Commentaire : </h2>
-    {{ form (Commentform) }}
+    <div class="ListCommentaires">
+        {% if article.comments|length > -1 %}
+            <h3>Commentaires <span class="badge badge-primary">{{ article.comments|length }}</span> </h3>
+            {% for comment in article.comments %}
+                <div class="card">
+                    <div class="card-body">
+                        {{ comment.content }}
+                    </div>
+                </div>
+                <br>
+
+            {% endfor %}
+        {% endif %}
     </div>
 
-    <div class="ListCommentaires">
-        <h2>Liste des Commentaires : </h2>
-        {% for comment in article.comments %}
-            <div class="card">
-                <div class="card-body">
-                    {{ comment.content }}
-                </div>
-            </div>
-            <br>
-
-        {% endfor %}
+    <div class="AjoutCommentaires">
+        <h4>Ajouter un commentaire : </h4>
+        {{ form (Commentform) }}
     </div>
 
     <input type="hidden" value="{{ article.id }}" id="idArticle">
