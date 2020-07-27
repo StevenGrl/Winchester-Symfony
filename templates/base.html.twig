@@ -8,33 +8,28 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top flex-md-nowrap p-1 shadow">
-            <a class="navbar-brand mr-0 px-3" href="{{ path('home') }}">Winchester</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('home') }}">Accueil</a>
-                    </li>
-                    {% if is_granted('ROLE_USER') %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('dashboard') }}">Dashboard</a>
-                        </li>
+    
+        <navbar>
+            <ul class="navbar-list">
+                <li class="navbar-item">
+                    <a href="{{ path('home') }}">Winchester</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="{{ path('home') }}">Accueil</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="{{ path('dashboard') }}">Dashboard</a>
+                </li>
+                <li class="navbar-item">
+                    {% if app.user %}
+                        <a href="{{ path('app_logout') }}">Déconnexion</a>
+                    {% else %}
+                        <a href="{{ path('app_login') }}">Connexion</a>
                     {% endif %}
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        {% if app.user %}
-                        <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
-                        {% else %}
-                            <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
-                        {% endif %}
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                </li>
+            </ul>
+        </navbar>
+
         {% block content %}
             <div class="container">
                 {% block body %}
