@@ -1,28 +1,32 @@
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white sidebar collapse">
-    <div class="sidebar-sticky pt-3">
+<div class="menu_card">
+  <div class="card-body">
+      <h5 class="card-title">Recherche</h5>
+      <form class="form-inline">
+          <input class="form-control mr-sm-2 w-75" type="search" placeholder="Rechercher..." aria-label="Rechercher">
+          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+              <i class="fas fa-search"></i>
+          </button>
+      </form>
+      <h5 class="card-title mt-5">Catégories</h5>
+      <ul class="nav flex-column mb-2">
+        <li class="nav-item">
+          <a class="nav-link text-secondary pl-0" href="{{ path('article_index') }}">
+            {# <span data-feather="file-text"></span> #}
+            Toutes les catégories
+            <span class="badge badge-light text-muted float-right">{{ nbArticlesTotal }}</span>
+          </a>            
+        </li>
 
-        <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3">
-          <span>Catégories</span>
-        </h5>
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <a class="nav-link text-secondary" href="{{ path('article_index') }}">
-              {# <span data-feather="file-text"></span> #}
-              Toutes les catégories
-              <span class="badge badge-primary">{{ nbArticlesTotal }}</span>
-            </a>            
-          </li>
-
-            {% for theme in themes %}
-                <li class="nav-item">
-                    <a class="nav-link text-secondary" href="{{ path('theme_article_index', {'id': theme[0].id}) }}">
-                    {# <span data-feather="file-text"></span> #}
-                    {{ theme[0].name }}
-                    <span class="badge badge-primary">{{ theme['nbArticles'] }}</span>
-                    </a>
-                </li>
-            {% endfor %}
-          
-        </ul>
-    </div>
-</nav>
+          {% for theme in themes %}
+              <li class="nav-item">
+                  <a class="nav-link text-secondary pl-0" href="{{ path('theme_article_index', {'id': theme[0].id}) }}">
+                  {# <span data-feather="file-text"></span> #}
+                  {{ theme[0].name }}
+                  <span class="badge badge-light text-muted float-right">{{ theme['nbArticles'] }}</span>
+                  </a>
+              </li>
+          {% endfor %}
+        
+      </ul>
+  </div>
+</div>

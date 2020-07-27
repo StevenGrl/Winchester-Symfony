@@ -1,4 +1,5 @@
 $primary: #600;
+$body-bg: #fff; //e8e8e8
 @import "~bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 :root {
@@ -140,9 +141,10 @@ a {
 
 /* Left Menu */
 
-#sidebarMenu {
-    height: calc(100vh - 48px);
-    position: fixed;
+.menu_card {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 2px .8rem 1rem rgba(0, 0, 0, .05);
 }
 
 
@@ -185,7 +187,7 @@ a {
     flex-direction: column;
     box-shadow: 2px .8rem 1rem rgba(0, 0, 0, .05);
     margin-bottom: 1rem;
-    border-radius: 0.25rem;
+    border-radius: 1rem;
 }
 
 .article_img {
@@ -193,6 +195,7 @@ a {
     position: relative;
     z-index: 1;
     overflow: hidden;
+    border-radius: 1rem 1rem 0 0;
 }
 
 .background_img {
@@ -249,6 +252,7 @@ a {
     background-color: #FFF;
     padding: 2rem 3rem;
     position: relative;
+    border-radius: 0 0 1rem 1rem;
 }
 
 .article_title {
@@ -298,7 +302,7 @@ a {
     transform: scaleX(1);
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 1000px) {
     .article_card {
         flex-direction: row;
         max-width: 75rem;
@@ -306,6 +310,7 @@ a {
     .article_img {
         flex-basis: 40%;
         height: unset;
+        border-radius: 1rem 0 0 1rem;
     }
     .article_details {
         transform: translateX(-100%);
@@ -333,6 +338,7 @@ a {
     }
     .article_data {
         flex-basis: 60%;
+        border-radius: 0 1rem 1rem 0;
     }
     .article_data:before {
         content: '';

@@ -4,14 +4,7 @@
 
 {% block content %}
     <div class="container-fluid">
-        <div class="row">
-            <div>
-                {% block leftMenu %}
-                    {% if is_granted("ROLE_USER") %}
-                        {{ render(controller('App\\Controller\\ArticleController::recentArticlesAction', {'nbArticles': 3 } )) }}
-                    {% endif %}
-                {% endblock %}
-            </div>
+        <div class="row">            
 
             <div class="col-8 mt-3 mx-auto">
                 <h1 class="text-dark my-4">
@@ -63,18 +56,12 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="col-3 pl-0">
-                        <div class="card">
-                            <div class="card-body p-3">
-                                <h5 class="card-title">Recherche</h5>
-                                <form class="form-inline">
-                                    <input class="form-control mr-sm-2 w-75" type="search" placeholder="Rechercher..." aria-label="Rechercher">
-                                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+                    <div class="col-3 px-0">
+                        {% block leftMenu %}
+                            {% if is_granted("ROLE_USER") %}
+                                {{ render(controller('App\\Controller\\ArticleController::recentArticlesAction', {'nbArticles': 3 } )) }}
+                            {% endif %}
+                        {% endblock %}
                     </div>
                 </div>
             </div>
