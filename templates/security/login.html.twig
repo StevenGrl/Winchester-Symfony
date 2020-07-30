@@ -3,6 +3,7 @@
 {% block title %}{{ parent() }} - Connexion{% endblock %}
 
 {% block body %}
+    <!--
     <div class="container">
         <div class="card w-50 mx-auto mt-5 text-center bg-light shadow-lg">
             <div class="card-header">
@@ -32,4 +33,33 @@
             </div>
         </div>
     </div>
+    -->
+
+    <div class="login_card row bg-white py-5">
+        <div class="w-50 m-auto">
+            <img src="https://static-2.gumroad.com/res/gumroad/1211634803146/asset_previews/7fae28c65fc1366320b504d8436c5372/retina/gamer-monochrome-thumbnail.png"
+                 alt="" class="login_img"/>
+        </div>
+        <div class="card-body w-50 my-auto px-5">
+            <h2 class="card-title font-weight-bold pb-4">Se connecter</h5>
+            <form action="{{ path('app_login_check') }}" method="post">
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur</label>
+                    <input type="text" class="form-control w-75 border-right-0 border-top-0 border-left-0" id="username"
+                            name="_username" value="{{ lastUsername }}"
+                            placeholder="Nom d'utilisateur" required/>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" class="form-control w-75 border-right-0 border-top-0 border-left-0" id="password"
+                            aria-describedby="passwordHelpBlock" name="_password"
+                            placeholder="Mot de passe" required/>
+                </div>
+                <input type="hidden" name="_target_path" value="{{ targetPath }}">
+
+                <button type="submit" class="btn btn-primary mt-4">Connexion</button>
+            </form>
+        </div>
+    </div>
+
 {% endblock %}

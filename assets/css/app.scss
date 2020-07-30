@@ -9,6 +9,7 @@ $body-bg: #fff; //e8e8e8
 body {
     background-color: #e8e8e8;
     font-family: 'Nunito', sans-serif;
+    height: 100vh;
 }
 
 a {
@@ -16,6 +17,22 @@ a {
     color: inherit;
 }
 
+
+/* Login */
+
+.login_card {
+    position: absolute;
+    width: 50%;
+    top: 25%;
+    left: 25%;
+    border-radius: 1rem;
+    box-shadow: 2px .8rem 1rem rgba(0, 0, 0, .05);
+}
+
+.login_img {
+    width: 80%;
+    margin-left: 10%;
+}
 
 /* Navbar */
 
