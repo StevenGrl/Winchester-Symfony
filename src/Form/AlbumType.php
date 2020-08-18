@@ -6,6 +6,7 @@ use App\Entity\Album;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,7 +16,7 @@ class AlbumType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, ['label' => 'Titre de l\'album'])
-            ->add('description', TextType::class, ['label' => 'Description'])
+            ->add('description', TextareaType::class, ['label' => 'Description'])
             ->add('imageFile', FileType::class, array(
                 'label' => 'Image de présentation de l\'album',
                 'required' => false,
