@@ -1,4 +1,11 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+        <div class="form-group offset-2 col-8">
+            {% if album.image %}
+                <img id="album-image" class="img-fluid" src="{{ asset('images/upload/' ~ ad.image) }}" alt="">
+            {% else %}
+                <img id="album-image" class="img-fluid" src="{{ asset('images/default.jpeg') }}" alt="">
+            {% endif %}
+        </div>
+    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

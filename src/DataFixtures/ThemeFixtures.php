@@ -9,7 +9,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class ThemeFixtures extends Fixture
 {
-    public const THEMES = ['Technologie', 'People', 'Nature', 'Ville', 'Animaux', 'Sport'];
+    public const THEMES = ['Jeux vidéo', 'Sport', 'Technologie', 'Politique'];
 
     public function load(ObjectManager $manager)
     {
