@@ -8,6 +8,10 @@
                     <img id="album-image" class="img-fluid" src="{{ asset('images/default.png') }}" alt="">
                 {% endif %}
             </div>
-        <button class="btn btn-primary my-2 my-sm-0">{{ button_label|default('Enregistrer') }}</button>
+            <div class="mt-5">
+                <a href="{{ path('album_index') }}" class="btn btn-outline-primary my-2 my-sm-0">Retour à la liste</a>
+                <button class="btn btn-primary my-2 my-sm-0 float-right">{{ button_label|default('Enregistrer') }}</button>                
+            </div>
+            
     {{ form_end(form) }}
 </div>
